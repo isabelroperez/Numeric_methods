@@ -1,0 +1,515 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     18004,        507]
+NotebookOptionsPosition[     15529,        442]
+NotebookOutlinePosition[     15904,        458]
+CellTagsIndexPosition[     15861,        455]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Hoja 5:", "Title",
+ CellChangeTimes->{{3.78446471195788*^9, 
+  3.7844647254297037`*^9}},ExpressionUUID->"a7adc8d7-6b25-4d20-90eb-\
+bbf5cf65e325"],
+
+Cell["Ejercicio 1 :", "Subtitle",
+ CellChangeTimes->{{3.7844647288227777`*^9, 
+  3.7844647386329813`*^9}},ExpressionUUID->"c4ba8d2c-7a16-4254-970c-\
+1faca14708b2"],
+
+Cell["\<\
+Vamos a resolver los 2 sistemas de ecuaciones triangulares que se nos plantea \
+en el ejercicio 5.1 para verificar que nuestros resultados hallados en \
+Fortran son los correctos:\
+\>", "Text",
+ CellChangeTimes->{{3.7852255290262246`*^9, 3.785225580821227*^9}, {
+  3.785225748874961*^9, 
+  3.7852257515863795`*^9}},ExpressionUUID->"d48c2abc-baad-47dd-9675-\
+cf3ce591c3f9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"matriz1", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<matriz1.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"matriz2", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<matriz2.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"detm1", "=", 
+   RowBox[{"Det", "[", "matriz1", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"detm2", "=", 
+   RowBox[{"Det", "[", "matriz2", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b1", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<b1.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b2", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<b2.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"x", "=", 
+   RowBox[{"{", 
+    RowBox[{"x1", ",", "x2", ",", "x3", ",", "x4", ",", "x5"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"y", "=", 
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"y1"},
+      {"y2"},
+      {"y3"},
+      {"y4"},
+      {"y5"},
+      {"y6"}
+     }], "\[NoBreak]", ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+  "\"\<El determinante de la matriz1 vale,igual que en Fortran:  \>\"", ",", 
+   "detm1"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+  "\"\<El determinante de la matriz1 vale\>\"", ",", "detm2", ",", 
+   "\"\<, lo mismo que obtenemos en Fortran.\>\""}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"matriz1", ".", "x"}], "\[Equal]", "b1"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x1", ",", "x2", ",", "x3", ",", "x4", ",", "x5"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Solve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"matriz2", ".", "y"}], "\[Equal]", "b2"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"y1", ",", "y2", ",", "y3", ",", "y4", ",", "y5", ",", "y6"}], 
+    "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.784473178881639*^9, 3.7844732631970167`*^9}, {
+  3.7844733265632243`*^9, 3.7844733312556973`*^9}, {3.784473361684351*^9, 
+  3.7844734559253488`*^9}, {3.7844734929134474`*^9, 3.784473609241394*^9}, {
+  3.784473684380211*^9, 3.7844737412872667`*^9}, {3.7844737986147394`*^9, 
+  3.7844739111115084`*^9}, {3.7844739972790737`*^9, 3.7844741085497727`*^9}, {
+  3.78447422686804*^9, 3.784474261477912*^9}, {3.784474318087748*^9, 
+  3.784474325241851*^9}, {3.78447457268328*^9, 3.7844745784630136`*^9}, {
+  3.7844746101182146`*^9, 3.7844746213923645`*^9}, {3.7852259992792873`*^9, 
+  3.7852260461839204`*^9}, {3.785226083729659*^9, 
+  3.785226324337534*^9}},ExpressionUUID->"3504be06-aec7-4394-8620-\
+7aba3b2cad29"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"El determinante de la matriz1 vale,igual que en Fortran:  \
+\"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", "6.`"}]}],
+  SequenceForm[
+  "El determinante de la matriz1 vale,igual que en Fortran:  ", -6.],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.785226198344689*^9, {3.785226237423978*^9, 
+   3.7852263261137547`*^9}},ExpressionUUID->"41a7a5bd-8268-4e9e-b056-\
+90a4f593b83f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"El determinante de la matriz1 vale\"\>", "\[InvisibleSpace]", 
+   RowBox[{"-", "36.00000000000001`"}], 
+   "\[InvisibleSpace]", "\<\", lo mismo que obtenemos en Fortran.\"\>"}],
+  SequenceForm[
+  "El determinante de la matriz1 vale", -36.00000000000001, 
+   ", lo mismo que obtenemos en Fortran."],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.785226198344689*^9, {3.785226237423978*^9, 
+   3.7852263261192493`*^9}},ExpressionUUID->"6c4505bd-8bfa-40d6-b1a4-\
+53fba6717904"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"x1", "\[Rule]", 
+     RowBox[{"-", "3.`"}]}], ",", 
+    RowBox[{"x2", "\[Rule]", "0.3333333333333333`"}], ",", 
+    RowBox[{"x3", "\[Rule]", 
+     RowBox[{"-", "5.666666666666667`"}]}], ",", 
+    RowBox[{"x4", "\[Rule]", "13.333333333333334`"}], ",", 
+    RowBox[{"x5", "\[Rule]", 
+     RowBox[{"-", "30.333333333333336`"}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.784473273019145*^9, 3.7844733344591255`*^9, 3.7844733819551425`*^9, 
+   3.7844735362106705`*^9, {3.7844737165698447`*^9, 3.7844737427832804`*^9}, 
+   3.7844738467893324`*^9, 3.7844739131864576`*^9, 3.7844740639729967`*^9, 
+   3.7844741115331945`*^9, 3.7844742629775424`*^9, {3.7844743105716953`*^9, 
+   3.784474328881406*^9}, {3.784474559403015*^9, 3.7844745795096197`*^9}, 
+   3.784474625766313*^9, 3.784474662441017*^9, 3.785225982372512*^9, 
+   3.78522602388593*^9, 3.785226198357687*^9, {3.785226237436942*^9, 
+   3.7852263261282263`*^9}},ExpressionUUID->"96916a96-6aa6-4fa3-a0ca-\
+b710264fc10c"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"y1", "\[Rule]", "0.33333333333333365`"}], ",", 
+    RowBox[{"y2", "\[Rule]", 
+     RowBox[{"-", "1.1666666666666652`"}]}], ",", 
+    RowBox[{"y3", "\[Rule]", 
+     RowBox[{"-", "1.333333333333333`"}]}], ",", 
+    RowBox[{"y4", "\[Rule]", "2.333333333333333`"}], ",", 
+    RowBox[{"y5", "\[Rule]", "0.1666666666666667`"}], ",", 
+    RowBox[{"y6", "\[Rule]", "0.5000000000000003`"}]}], "}"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{
+  3.784473273019145*^9, 3.7844733344591255`*^9, 3.7844733819551425`*^9, 
+   3.7844735362106705`*^9, {3.7844737165698447`*^9, 3.7844737427832804`*^9}, 
+   3.7844738467893324`*^9, 3.7844739131864576`*^9, 3.7844740639729967`*^9, 
+   3.7844741115331945`*^9, 3.7844742629775424`*^9, {3.7844743105716953`*^9, 
+   3.784474328881406*^9}, {3.784474559403015*^9, 3.7844745795096197`*^9}, 
+   3.784474625766313*^9, 3.784474662441017*^9, 3.785225982372512*^9, 
+   3.78522602388593*^9, 3.785226198357687*^9, {3.785226237436942*^9, 
+   3.7852263261342106`*^9}},ExpressionUUID->"6730c442-c385-4d20-b701-\
+c6eeba9b8fb1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Ejercicio 2 :", "Subtitle",
+ CellChangeTimes->{{3.7849869456009493`*^9, 
+  3.7849869577287283`*^9}},ExpressionUUID->"438a23c6-e3ba-4eed-87ba-\
+2788f201efc4"],
+
+Cell["\<\
+Vamos a comprobar si las matrices que obtenemos en Fortran: L y U, son el \
+producto de la matriz A y verificar que los determinantes obtenidos son el \
+mismo.La matriz que nos dan en el ejercicio es:\
+\>", "Text",
+ CellChangeTimes->{{3.7852257178945136`*^9, 3.7852257348459682`*^9}, {
+  3.7852258374916754`*^9, 
+  3.785225848660695*^9}},ExpressionUUID->"a6d198f8-29d7-4366-833e-\
+b7e8bf9ae7d8"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"A", "=", 
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"1", 
+       RowBox[{"-", "3"}], "1", "2", "1", 
+       RowBox[{"-", "1"}]},
+      {
+       RowBox[{"-", "1"}], "2", "1", "1", "0", "3"},
+      {"3", 
+       RowBox[{"-", "2"}], "2", "3", 
+       RowBox[{"-", "4"}], 
+       RowBox[{"-", "1"}]},
+      {"0", 
+       RowBox[{"-", "1"}], "2", 
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "1"}], "2"},
+      {
+       RowBox[{"-", "1"}], "3", "1", "0", "1", "4"},
+      {
+       RowBox[{"-", "1"}], "0", "3", "2", 
+       RowBox[{"-", "1"}], 
+       RowBox[{"-", "2"}]}
+     }], "\[NoBreak]", ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"detWolf", "=", 
+   RowBox[{"Det", "[", "A", "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.7849869876749597`*^9, 3.7849871215373397`*^9}, {
+   3.784987224995701*^9, 3.7849872319731026`*^9}, {3.7849873470764847`*^9, 
+   3.7849873657102585`*^9}, 3.78499623528082*^9, {3.7852237143856325`*^9, 
+   3.7852237157228756`*^9}, {3.78522427501256*^9, 3.785224276747116*^9}, {
+   3.7852243963574615`*^9, 3.7852244001830206`*^9}, {3.785225305779594*^9, 
+   3.7852253377000284`*^9}},ExpressionUUID->"c24d7e6e-bf8f-437d-b8e7-\
+17548fbbf910"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SetDirectory", "[", 
+   RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";", 
+  RowBox[{"L", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<m.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"U", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<u.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"detA", "=", 
+   RowBox[{"Import", "[", 
+    RowBox[{"\"\<detA.txt\>\"", ",", "\"\<Table\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+   RowBox[{"MatrixForm", "[", 
+    RowBox[{"L", ".", "U"}], "]"}], ",", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   "\"\<Es igual a la matriz original, y podemos ver que su determinante vale\
+\>\"", ",", "detA", ",", "\"\<=\>\"", ",", "detWolf"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7852238217302647`*^9, 3.7852238666251893`*^9}, {
+   3.785223963809596*^9, 3.785223995013193*^9}, {3.78522404440486*^9, 
+   3.7852240969183598`*^9}, {3.7852242088403387`*^9, 3.785224249210327*^9}, {
+   3.785224291045628*^9, 3.7852243195653086`*^9}, {3.78522436679069*^9, 
+   3.785224387954742*^9}, 
+   3.785225300475358*^9},ExpressionUUID->"ab5ed919-4b1b-45d7-9137-\
+2d91a574acb8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"1.`", 
+        RowBox[{"-", "3.`"}], "1.`", "2.`", "1.`", 
+        RowBox[{"-", "1.`"}]},
+       {
+        RowBox[{"-", "1.`"}], "2.`", "1.`", "1.`", "0.`", "3.`"},
+       {"3.`", 
+        RowBox[{"-", "2.`"}], "2.`", "3.`", 
+        RowBox[{"-", "4.`"}], 
+        RowBox[{"-", "1.`"}]},
+       {"0.`", 
+        RowBox[{"-", "1.`"}], "2.`", 
+        RowBox[{"-", "1.`"}], 
+        RowBox[{"-", "1.`"}], "2.`"},
+       {
+        RowBox[{"-", "1.`"}], "3.`", "0.9993999999999998`", 
+        RowBox[{"-", "0.000800000000000245`"}], "0.9999999999999998`", 
+        "3.9993`"},
+       {
+        RowBox[{"-", "1.`"}], "0.`", "3.0006000000000004`", 
+        "2.0008000000000004`", 
+        RowBox[{"-", "0.9999493799999999`"}], 
+        RowBox[{"-", "1.9992765499999994`"}]}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]], 
+   "\[InvisibleSpace]", "\<\"Es igual a la matriz original, y podemos ver que \
+su determinante vale\"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"-", "758.`"}], "}"}], "}"}], "\[InvisibleSpace]", "\<\"=\"\>", 
+   "\[InvisibleSpace]", "detWolfram"}],
+  SequenceForm[
+   MatrixForm[{{1., -3., 1., 2., 1., -1.}, {-1., 2., 1., 1., 0., 3.}, {
+    3., -2., 2., 3., -4., -1.}, {0., -1., 2., -1., -1., 2.}, {-1., 3., 
+    0.9993999999999998, -0.000800000000000245, 0.9999999999999998, 
+    3.9993}, {-1., 0., 3.0006000000000004`, 
+    2.0008000000000004`, -0.9999493799999999, -1.9992765499999994`}}], 
+   "Es igual a la matriz original, y podemos ver que su determinante vale", \
+{{-758.}}, "=", $CellContext`detWolfram],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.7852242503657856`*^9, 
+  3.7852249300535345`*^9},ExpressionUUID->"00de6ed0-d7e2-4962-b3d8-\
+a1081c03c42b"]
+}, Open  ]],
+
+Cell["\<\
+A continuaci\[OAcute]n vamos a resolver el sistema de ecuaciones que se nos \
+pregunta en el apartado 5.2:\
+\>", "Text",
+ CellChangeTimes->{{3.7852252445492706`*^9, 
+  3.7852252747127457`*^9}},ExpressionUUID->"c38de564-e1c2-418d-b5a8-\
+1e4740fbabdf"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"b", "=", 
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"1"},
+      {
+       RowBox[{"-", "2"}]},
+      {"1"},
+      {
+       RowBox[{"-", "1"}]},
+      {"1"},
+      {"1"}
+     }], "\[NoBreak]", ")"}]}], ";"}]], "Input",ExpressionUUID->"597f4032-\
+59d2-49ae-9fff-20a2969d2df3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"z", "=", 
+   RowBox[{"(", "\[NoBreak]", GridBox[{
+      {"z1"},
+      {"z2"},
+      {"z3"},
+      {"z4"},
+      {"z5"},
+      {"z6"}
+     }], "\[NoBreak]", ")"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.7852252253394966`*^9},ExpressionUUID->"b0fff01d-7061-4387-82ac-\
+0831135eb540"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NSolve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"A", ".", "z"}], "\[Equal]", "b"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"z1", ",", "z2", ",", "z3", ",", "z4", ",", "z5", ",", "z6"}], 
+    "}"}]}], "]"}]], "Input",ExpressionUUID->"9eaba31b-3a58-4f96-b533-\
+ddd48b54a2c5"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"z1", "\[Rule]", "2.907651715039579`"}], ",", 
+    RowBox[{"z2", "\[Rule]", "1.5514511873350927`"}], ",", 
+    RowBox[{"z3", "\[Rule]", "1.7176781002638528`"}], ",", 
+    RowBox[{"z4", "\[Rule]", 
+     RowBox[{"-", "0.8258575197889182`"}]}], ",", 
+    RowBox[{"z5", "\[Rule]", "1.651715039577837`"}], ",", 
+    RowBox[{"z6", "\[Rule]", 
+     RowBox[{"-", "1.029023746701847`"}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.785225417255206*^9},ExpressionUUID->"dbf8c7f1-aa20-4f62-abc6-\
+e42c6a0d72a9"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"z1", "\[Rule]", "2.907651715039579`"}], ",", 
+    RowBox[{"z2", "\[Rule]", "1.5514511873350927`"}], ",", 
+    RowBox[{"z3", "\[Rule]", "1.7176781002638528`"}], ",", 
+    RowBox[{"z4", "\[Rule]", 
+     RowBox[{"-", "0.8258575197889182`"}]}], ",", 
+    RowBox[{"z5", "\[Rule]", "1.651715039577837`"}], ",", 
+    RowBox[{"z6", "\[Rule]", 
+     RowBox[{"-", "1.029023746701847`"}]}]}], "}"}], "}"}]], "Input",Expressio\
+nUUID->"6e852de7-b225-4869-8d33-680680a48fed"],
+
+Cell["\<\
+Estos n\[UAcute]meros son los elementos del vector columna que resulta de la \
+ecuaci\[OAcute]n A*z=b.\
+\>", "Text",
+ CellChangeTimes->{{3.7852254346749744`*^9, 
+  3.7852254762263737`*^9}},ExpressionUUID->"6d5588fe-6103-4a6c-bda5-\
+f152fda2100b"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1280, 637},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>2.3 Inherited,
+FrontEndVersion->"11.1 para Microsoft Windows (64-bit) (March 13, 2017)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 151, 3, 231, "Title", "ExpressionUUID" -> \
+"addbf85f-e40b-4ed9-92d8-f859b3ef438c"],
+Cell[734, 27, 163, 3, 128, "Subtitle", "ExpressionUUID" -> \
+"c4ba8d2c-7a16-4254-970c-1faca14708b2"],
+Cell[900, 32, 382, 8, 154, "Text", "ExpressionUUID" -> \
+"d48c2abc-baad-47dd-9675-cf3ce591c3f9"],
+Cell[CellGroupData[{
+Cell[1307, 44, 2974, 80, 1506, "Input", "ExpressionUUID" -> \
+"3504be06-aec7-4394-8620-7aba3b2cad29"],
+Cell[CellGroupData[{
+Cell[4306, 128, 434, 11, 51, "Print", "ExpressionUUID" -> \
+"41a7a5bd-8268-4e9e-b056-90a4f593b83f"],
+Cell[4743, 141, 531, 12, 94, "Print", "ExpressionUUID" -> \
+"6c4505bd-8bfa-40d6-b1a4-53fba6717904"]
+}, Open  ]],
+Cell[5289, 156, 1048, 21, 146, "Output", "ExpressionUUID" -> \
+"96916a96-6aa6-4fa3-a0ca-b710264fc10c"],
+Cell[6340, 179, 1106, 22, 146, "Output", "ExpressionUUID" -> \
+"6730c442-c385-4d20-b701-c6eeba9b8fb1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7483, 206, 163, 3, 128, "Subtitle", "ExpressionUUID" -> \
+"7d969664-5e24-4fb8-ba0e-1037e59fa054"],
+Cell[7649, 211, 405, 8, 154, "Text", "ExpressionUUID" -> \
+"a6d198f8-29d7-4366-833e-b7e8bf9ae7d8"],
+Cell[8057, 221, 1225, 33, 390, "Input", "ExpressionUUID" -> \
+"c24d7e6e-bf8f-437d-b8e7-17548fbbf910"],
+Cell[CellGroupData[{
+Cell[9307, 258, 1285, 31, 577, "Input", "ExpressionUUID" -> \
+"ab5ed919-4b1b-45d7-9137-2d91a574acb8"],
+Cell[10595, 291, 2285, 57, 324, "Print", "ExpressionUUID" -> \
+"00de6ed0-d7e2-4962-b3d8-a1081c03c42b"]
+}, Open  ]],
+Cell[12895, 351, 260, 6, 111, "Text", "ExpressionUUID" -> \
+"c38de564-e1c2-418d-b5a8-1e4740fbabdf"],
+Cell[13158, 359, 313, 13, 259, "Input", "ExpressionUUID" -> \
+"597f4032-59d2-49ae-9fff-20a2969d2df3"],
+Cell[13474, 374, 320, 13, 259, "Input", "ExpressionUUID" -> \
+"b0fff01d-7061-4387-82ac-0831135eb540"],
+Cell[CellGroupData[{
+Cell[13819, 391, 295, 8, 134, "Input", "ExpressionUUID" -> \
+"9eaba31b-3a58-4f96-b533-ddd48b54a2c5"],
+Cell[14117, 401, 578, 14, 146, "Output", "ExpressionUUID" -> \
+"dbf8c7f1-aa20-4f62-abc6-e42c6a0d72a9"]
+}, Open  ]],
+Cell[14710, 418, 532, 12, 162, "Input", "ExpressionUUID" -> \
+"6e852de7-b225-4869-8d33-680680a48fed"],
+Cell[15245, 432, 256, 6, 111, "Text", "ExpressionUUID" -> \
+"6d5588fe-6103-4a6c-bda5-f152fda2100b"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
